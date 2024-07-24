@@ -1,0 +1,26 @@
+name: nopcommerce
+services:
+  nop:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000"
+    networks:
+      - nop-net
+  nopdb:
+    image: mysql:9.0
+    environment:
+      MYSQL_ROOT_PASSWORD: sxz979
+      MYSQL_DATABASE: nopdb
+      MYSQL_USER: shahinur
+      MYSQL_PASSWORD: shahinur123
+    networks:
+      - nop-net
+    volumes:
+      - nop_volume:/var/lib/mysql:rw
+volumes:
+  nop_volume:
+networks:
+  nop-net:
+    
